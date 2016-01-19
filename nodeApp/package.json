@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "liquid-pid": "^1.0.0"
+    "liquid-pid": "^1.0.0",
+    "pid-controller": "^1.0.3"
   }
 }
