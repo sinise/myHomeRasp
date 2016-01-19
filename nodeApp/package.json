@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "pid-controller": "^1.0.3",
+    "sleep": "^3.0.0",
     "wiring-pi": "^2.1.1"
   }
 }

@@ -2,9 +2,9 @@ var fs = require('fs'),
     PID = require('pid-controller');
     
 var temperture = 20,
-    tempertureSetpoint = 23;
+    tempertureSetpoint = 25;
 
-var Kp = 50,
+var Kp = 10,
     Ki = 1,
     Kd = 0;
 
@@ -37,4 +37,4 @@ var getTemp = function(path, cb){
   });
 }
 
-exports.loop = function(){getTemp('./w1_slave', calculatePid)}
+exports.loop = function(){getTemp('/sys/bus/w1/devices/28-000005f5dac4/w1_slave', calculatePid)}
