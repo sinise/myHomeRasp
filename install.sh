@@ -2,38 +2,36 @@
 #edit and copy over interfaces to /etc/network/ and wpa-suplicant to /etc/wpa-suplicant/
 #boot and use raspi-conf. do the following
 #Expand filesystem
+#activate 1wire under advanced
+# assign 16 mb shared to gpu
 #set Internationalisation option
 #set defoult login to shell without log in
-# enable device tree if you use bcm2835
-#
-#apt-get remove -y --auto-remove --purge wolfram-engine scratch nuscratch sonic-pi pistore idle3 smartsim penguinspuzzle minecraft-pi python-minecraftpi python3-minecraftpi raspberrypi-artwork
-#apt-get -y update
-#apt-get -y upgrade
-#apt-get -y dist-upgrade
-#apt-get update && apt-get install -y git python build-essential curl nano wget libkrb5-dev
 
+#sudo apt-get remove -y --auto-remove --purge wolfram-engine scratch nuscratch sonic-pi pistore idle3 smartsim penguinspuzzle minecraft-pi python-minecraftpi python3-minecraftpi raspberrypi-artwork
+#sudo apt-get -y update
+#sudo apt-get -y upgrade
+#sudo apt-get -y dist-upgrade
+#sudo apt-get update && apt-get install -y git python build-essential curl nano wget libkrb5-dev oracle-java8-jdk
+#sudo apt-get install apt-transport-https
+#sudo echo 'deb https://openhab.ci.cloudbees.com/job/openHAB-Distribution/ws/distributions/openhab-offline/target/apt-repo/ /' | sudo tee /etc/apt/sources.list.d/openhab2.list
+#sudo echo 'deb https://openhab.ci.cloudbees.com/job/openHAB-Distribution/ws/distributions/openhab-online/target/apt-repo/ /' | sudo tee --append /etc/apt/sources.list.d/openhab2.list
 
-#wget https://nodejs.org/dist/v4.2.4/node-v4.2.4-linux-armv7l.tar.gz
-#tar -xvf node-v4.2.4-linux-armv7l.tar.gz
-#cd node-v4.2.4-linux-armv7l
-#sudo cp -R * /usr/local/
+#sudo wget -qO - 'http://www.openhab.org/keys/public-key-snapshots.asc' | sudo apt-key add -
 
-npm install express-generator -g
-npm install -g nodemon
-npm install -g forever
+#sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+#sudo apt-get -y update
+sudo apt-get install -y nodejs openhab2-offline
 
-
-#Enable 1wire for parasit. (parasit datawire is pulled up with 4.7 k to 3.3v and only data and ground is connected to ds18b20)
-#see documentation https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README
-#echo "dtoverlay=w1-gpio,pullup=y" >> /boot/config#Enable 1wire
+#sudo npm install -g nodemon
+#sudo npm install -g forever
 
 #Disable power management for the wifi
-#echo "# Disable power management" >> /etc/modprobe.d/8192cu.conf
-#echo "options 8192cu rtw_power_mgnt=0 rtw_enusbss=0" >> /etc/modprobe.d/8192cu.conf
-# if using the bcm 2835 do this
-#wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.46.tar.gz
+#sudo echo "# Disable power management" >> /etc/modprobe.d/8192cu.conf
+#sudo echo "options 8192cu rtw_power_mgnt=0 rtw_enusbss=0" >> /etc/modprobe.d/8192cu.conf
 #git clone git://git.drogon.net/wiringPi
-
+sudo systemctl start openhab2.service
+#sudo systemctl daemon-reload
+#sudo systemctl enable openhab2.service
 
 #disabale logs
 #to make outologin to shell open /etc/inittab and replace line
