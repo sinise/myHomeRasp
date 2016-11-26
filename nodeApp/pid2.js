@@ -12,13 +12,13 @@ var ctr = new PID(temperture, tempertureSetpoint, Kp, Ki, Kd, 'direct'),
     timeframe = 1000;
 
 ctr.setSampleTime(timeframe);
-ctr.setOutputLimits(0, timeframe);
+ctr.setOutputLimits(100, timeframe);
 ctr.setMode('auto');
 var calculatePid = function(temp) {
     if (typeof calculatePid.counter == 'undefined') {
         calculatePid.counter = 0;
     }
-    ctr.setInput(temperture);
+    ctr.setInput(temp);
     ctr.setMode(1);
     ctr.compute();
     console.log("Output : " + ctr.getOutput() + " ; Temp : " + ctr.getInput() + "°c");
@@ -37,4 +37,4 @@ var getTemp = function(path, cb){
   });
 }
 
-exports.loop = function(){getTemp('/sys/bus/w1/devices/28-000005f5dac4/w1_slave', calculatePid)}
+exports.loop = function(){getTemp('/sys/bus/w1/devices/28-0315a713faff/w1_slave', calculatePid)}
